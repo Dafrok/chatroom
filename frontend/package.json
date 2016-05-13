@@ -1,0 +1,23 @@
+{
+  "name": "chatroom",
+  "version": "1.0.0",
+  "description": "Chatroom / WebSocket / Ruby",
+  "main": "index.js",
+  "scripts": {
+    "start": "rollup -c",
+    "rollup": "rollup -c"
+  },
+  "author": "Dafrok",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^1.0.24"
+  },
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "rollup": "^0.26.3",
+    "rollup-plugin-babel": "^2.4.0",
+    "rollup-plugin-commonjs": "^2.2.1",
+    "rollup-plugin-node-resolve": "^1.5.0",
+    "rollup-plugin-replace": "^1.1.0"
+  }
+}
