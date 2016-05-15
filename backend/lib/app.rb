@@ -2,7 +2,7 @@ require 'websocket'
 require 'websocket-eventmachine-server'
 require 'json'
 require './login'
-require './message'
+# require './message'
 
 clients = {}
 
@@ -15,7 +15,7 @@ EM.run do
 
     ws.onmessage do |msg, type|
       data = JSON.parse(msg)
-      case data.action
+      case data['action']
       when "login"
         login(data, clients, ws)
       when "message"

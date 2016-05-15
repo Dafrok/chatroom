@@ -9,7 +9,7 @@ For FEX.
 #### Message
 ```json
 {
-  "type": "message",
+  "action": "message",
   "message": "${message}",
   "to": "${account}",
 }
@@ -19,7 +19,7 @@ For FEX.
 
 ```json
 {
-  "type": "login",
+  "action": "login",
   "account": "${account}"
 }
 ```
@@ -27,14 +27,14 @@ For FEX.
 #### Logout
 ```json
 {
-  "type": "logout"
+  "action": "logout"
 }
 ```
 
 ### Response
 ```json
 {
-  "type": "message",
+  "action": "message",
   "message": "${message}",
   "from": "${account}",
   "public": true

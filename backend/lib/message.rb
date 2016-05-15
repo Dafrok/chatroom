@@ -5,7 +5,7 @@ def boardcast(clients, msg)
 end
 
 def send(clients, data)
-  if data.to && clients[data.to] do
+  if data.to && clients[data.to]
     clients[data.to].send data.message
   else
     boardcast(clients, data.message)

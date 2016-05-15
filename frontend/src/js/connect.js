@@ -7,12 +7,14 @@ ws.onmessage = function (e) {
 
 export function login(account) {
   ws.send(JSON.stringify({
+    action: 'login',
     account: account
   }))
 }
 
 export function send(msg = '', to = null) {
   ws.send(JSON.stringify({
+    action: 'message',
     message: msg,
     to: to
   }))

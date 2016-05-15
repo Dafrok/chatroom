@@ -5,5 +5,6 @@ def login(data, clients, new_ws)
       return
     end
   end
-  clients[data.account] = ws
+  puts data['account']
+  clients[data['account']] = new_ws
 end
