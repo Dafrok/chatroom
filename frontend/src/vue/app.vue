@@ -1,7 +1,7 @@
 <template lang="jade">
 section.app
-    login(v-if="!token")
-    chatroom(v-if="token")
+    login(v-if="token")
+    chatroom(v-if="!token")
 </template>
 
 <style lang="stylus">
