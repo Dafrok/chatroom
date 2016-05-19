@@ -10,7 +10,8 @@
   "author": "Dafrok",
   "license": "ISC",
   "dependencies": {
-    "vue": "^1.0.24"
+    "vue": "^1.0.24",
+    "vuex": "^0.6.3"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",

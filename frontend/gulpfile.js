@@ -19,7 +19,7 @@ var vue = require('rollup-plugin-vue')
 var paths = {
     dev: {
         pug: 'src/pug/**/*.pug',
-        js: 'src/js/index.js',
+        js: 'src/js/**',
         store: 'src/store/**',
         vue: 'src/vue/**',
         resource: 'src/resource/**',
