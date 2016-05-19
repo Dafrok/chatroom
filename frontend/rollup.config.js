@@ -19,7 +19,7 @@ export default {
             include: 'node_modules/**'
         }),
         replace({
-            'process.env.NODE_ENV': "'production'"
+            'process.env.NODE_ENV': "'development'"
         })
     ]
 }

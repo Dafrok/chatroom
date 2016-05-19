@@ -2,6 +2,7 @@ var gulp = require('gulp')
 var concat = require('gulp-concat')
 var rollup = require('gulp-rollup')
 var pug = require('gulp-pug')
+var webpack = require('webpack-stream')
 var plumber = require('gulp-plumber')
 var uglify = require('gulp-uglify')
 var rename = require('gulp-rename')
@@ -73,23 +74,35 @@ gulp.task('pug', function () {
 gulp.task('rollup', function () {
     return gulp.src([paths.dev.js])
         .pipe(plumber())
-        .pipe(rollup({
-            format: 'umd',
-            plugins: [
-                vue(),
-                babel({presets: ['es2015-rollup']}),
-                npm({
-                    jsnext: true,
-                    main: true
-                }),
-                commonjs({
-                    include: 'node_modules/**'
-                }),
-                replace({
-                    'process.env.NODE_ENV': "'production'"
-                })
-            ]
+        .pipe(webpack({
+            entry:'./src/js/index.js',
+            output:{
+                filename:'main.js'
+            },
+            module:{
+                loaders:[
+                    {test: /\.js?$/, exclude: /node_modules/, loader: 'babel'},
+                    {test: /\.vue?$/, exclude: /node_modules/, loader: 'vue'}
+                ]
+            }
         }))
+        // .pipe(rollup({
+        //     format: 'umd',
+        //     plugins: [
+        //         vue(),
+        //         babel({presets: ['es2015-rollup']}),
+        //         npm({
+        //             jsnext: true,
+        //             main: true
+        //         }),
+        //         commonjs({
+        //             include: 'node_modules/**'
+        //         }),
+        //         replace({
+        //             'process.env.NODE_ENV': "'production'"
+        //         })
+        //     ]
+        // }))
     .pipe(uglify())
     .pipe(rename('all.min.js'))
     .pipe(gulp.dest(paths.dist.template))
