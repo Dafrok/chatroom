@@ -15,11 +15,12 @@ EM.run do
 
     ws.onmessage do |msg, type|
       data = JSON.parse(msg)
-      puts msg
       case data['action']
       when "login"
         login(data, clients, ws)
       when "message"
+        puts clients
+        puts data
         send(clients, data)
       else
         puts "Received message: #{data}"

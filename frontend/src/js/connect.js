@@ -10,6 +10,8 @@ ws.onmessage = function (e) {
             break
         case 'login_error':
             break
+        case 'message':
+            ChatStore.dispatch('INSERTMESSAGE', data.message)
         default:
             console.log(data)
             break

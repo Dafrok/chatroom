@@ -47,6 +47,8 @@ form.message-field(@submit.prevent="sendMessage")
 </style>
 
 <script>
+import ChatStore from '../store/chat.js'
+import {send} from '../js/connect.js'
 export default {
     data () {
         return {
@@ -55,7 +57,7 @@ export default {
     },
     methods: {
         sendMessage () {
-            console.log(this.message)
+            send(this.message)
             this.message = ''
         }
     }
