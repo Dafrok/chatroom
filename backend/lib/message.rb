@@ -5,6 +5,9 @@ def boardcast(clients, data)
 end
 
 def send_message(clients, data)
+  if data['message'] === ''
+    return
+  end
   if data['to'] && clients[data['to']]
     clients[data['to']].send JSON.generate({:event => 'message', :message => data['message'], :from => data['from']})
   else

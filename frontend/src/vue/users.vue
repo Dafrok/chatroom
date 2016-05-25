@@ -1,5 +1,6 @@
 <template lang="jade">
 section.users
+    button(@click="logout") LOGOUT
 </template>
 
 <style lang="stylus" scoped>
@@ -14,6 +15,13 @@ section.users
 </style>
 
 <script>
+import AppStore from '../store/app.js'
+import {logout} from '../js/connect.js'
 export default {
+    methods: {
+        logout() {
+            logout(AppStore.state.account, AppStore.state.token)
+        }
+    }
 }
 </script>

@@ -12,8 +12,14 @@ const mutations = {
     UPDATEUSERS (state, users) {
         state.users = users
     },
-    INSERTMESSAGE (state, message) {
-        state.messages.push(message)
+    INSERTMESSAGE (state, messageFrom, message) {
+        state.messages.push({
+            message: message,
+            from: messageFrom
+        })
+    },
+    CLEARHISTORY (state) {
+        state.messages = []
     }
 }
 

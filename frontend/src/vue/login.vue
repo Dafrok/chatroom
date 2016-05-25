@@ -38,7 +38,7 @@ section.login
         background transparent
         font-size 16px
     input
-        width 200px
+        width 250px
     button
         width 80px
         background #3366cc
