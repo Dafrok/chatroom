@@ -2,7 +2,7 @@ require 'websocket'
 require 'websocket-eventmachine-server'
 require 'json'
 require './lib/login'
-# require './lib/message'
+require './lib/message'
 
 clients = {}
 
@@ -17,11 +17,11 @@ EM.run do
       data = JSON.parse(msg)
       case data['action']
       when "login"
-        login(data, clients, ws)
+        log_in(data, clients, ws)
+      when "logout"
+        log_out(data, clients)
       when "message"
-        puts clients
-        puts data
-        send(clients, data)
+        send_message(clients, data)
       else
         puts "Received message: #{data}"
       end

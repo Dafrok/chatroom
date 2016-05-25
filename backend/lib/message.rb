@@ -1,13 +1,13 @@
-def boardcast(clients, msg)
-  # clients.each do |key, ws|
-    # ws.send msg
-  # end
+def boardcast(clients, data)
+  clients.each do |key, ws|
+    ws.send JSON.generate({:event => 'message', :message => data['message'], :from => data['from']})
+  end
 end
 
-def send(clients, data)
-  # if data['to'] && clients[data['to']]
-  #   clients[data['to']].send data['message']
-  # else
-  #   boardcast(clients, data['message'])
-  # end
+def send_message(clients, data)
+  if data['to'] && clients[data['to']]
+    clients[data['to']].send JSON.generate({:event => 'message', :message => data['message'], :from => data['from']})
+  else
+    boardcast(clients, data)
+  end
 end
