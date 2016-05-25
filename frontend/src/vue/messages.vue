@@ -12,7 +12,7 @@ section.messages(@scroll="handleScroll")
     transition .3s all
 .pull-enter, .pull-leave
     opacity 0
-    transform translateY(100%)
+    /*transform translateY(100%)*/
 .messages
     position absolute
     top 0
@@ -27,6 +27,7 @@ section.messages(@scroll="handleScroll")
         font-size 12px
         color gray
     .message
+        margin 5px 0
         padding 10px
         background rgba(0, 0, 0, .1)
         font-size 14px
@@ -48,14 +49,24 @@ export default {
     },
     methods: {
         handleScroll (e) {
-            const height = parseInt(getComputedStyle(e.target).height)
+            const height = e.target.clientHeight
             const scrollTop = e.target.scrollTop
             const scrollHeight = e.target.scrollHeight
             if (scrollTop + height === scrollHeight) {
                 this.autoScroll = true
             } else {
-                autoScroll = false
+                this.autoScroll = false
             }
+        },
+        scrollToEnd () {
+            if (this.autoScroll) {
+                this.$el.scrollTop = this.$el.scrollHeight - this.$el.clientHeight
+            }
+        }
+    },
+    watch: {
+        'messages': function () {
+            this.scrollToEnd()
         }
     },
     computed: {
