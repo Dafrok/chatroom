@@ -4,7 +4,8 @@
   "description": "Chatroom / WebSocket / Ruby",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp",
+    "start": "anywhere 8080",
+    "dev": "gulp",
     "rollup": "rollup -c"
   },
   "author": "Dafrok",
