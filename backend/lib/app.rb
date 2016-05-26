@@ -3,6 +3,7 @@ require 'websocket-eventmachine-server'
 require 'json'
 require './lib/login'
 require './lib/message'
+require './lib/users'
 
 clients = {}
 
@@ -19,15 +20,21 @@ EM.run do
       when "login"
         log_in(data, clients, ws)
       when "logout"
-        log_out(data, clients)
+        if data['token'] === get_token(ws)
+          log_out(data, clients, ws)
+        end
       when "message"
-        send_message(clients, data)
+        if data['token'] === get_token(ws)
+          send_message(clients, data)
+        end
       else
         puts "Received message: #{data}"
       end
     end
 
     ws.onclose do
+      clean_users(clients, ws)
+      update_users(clients, ws)
       puts "Client disconnected"
     end
   end
