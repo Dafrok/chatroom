@@ -2,41 +2,21 @@
 
 For FEX.
 
-## Protocol
+## Deploy
 
-### Request
+### Backend
 
-#### Message
-```json
-{
-  "action": "message",
-  "message": "${message}",
-  "to": "${account}",
-}
+```
+$ cd backend
+$ bundle install
+$ ruby start.rb
 ```
 
-#### Login
+### Frontend
 
-```json
-{
-  "action": "login",
-  "account": "${account}"
-}
 ```
-
-#### Logout
-```json
-{
-  "action": "logout"
-}
-```
-
-### Response
-```json
-{
-  "action": "message",
-  "message": "${message}",
-  "from": "${account}",
-  "public": true
-}
+$ cd frontend
+$ npm i anywhere -g
+$ npm i
+$ npm start
 ```
