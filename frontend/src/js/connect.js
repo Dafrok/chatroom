@@ -18,6 +18,8 @@ ws.onmessage = function (e) {
             AppStore.dispatch('LOGIN', '', '')
             ChatStore.dispatch('CLEARHISTORY')
             break
+        case 'update_users':
+            ChatStore.dispatch('UPDATEUSERS', data.users)
         default:
             console.log(data)
             break

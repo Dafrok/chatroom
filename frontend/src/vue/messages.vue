@@ -1,7 +1,7 @@
 <template lang="jade">
 section.messages(@scroll="handleScroll")
     ul
-        li(v-for="message in messages" transition="pull")
+        li(v-for="message in messages" transition="pull" ,:class="message.from === account && 'self'")
             span(class="name", v-text="message.from")
             span(class="time", v-text="(new Date).toLocaleString()")
             div(class="message", v-text="message.message")
@@ -20,6 +20,11 @@ section.messages(@scroll="handleScroll")
     bottom 40px
     left 200px
     overflow auto
+    .self
+        .name
+            font-weight bold
+        .message
+            background rgba(0, 0, 0, .15)
     .name
         font-size 16px
         margin-right 10px
@@ -40,6 +45,7 @@ section.messages(@scroll="handleScroll")
 </style>
 
 <script>
+import AppStore from '../store/app.js'
 import ChatStore from '../store/chat.js'
 export default {
     data () {
@@ -52,7 +58,7 @@ export default {
             const height = e.target.clientHeight
             const scrollTop = e.target.scrollTop
             const scrollHeight = e.target.scrollHeight
-            if (scrollTop + height === scrollHeight) {
+            if (scrollTop + 1.5 * height > scrollHeight) {
                 this.autoScroll = true
             } else {
                 this.autoScroll = false
@@ -72,6 +78,9 @@ export default {
     computed: {
         messages () {
             return ChatStore.state.messages
+        },
+        account () {
+            return AppStore.state.account
         }
     }
 }
